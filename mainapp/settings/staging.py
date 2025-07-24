@@ -12,9 +12,9 @@ CORS_ALLOWED_ORIGINS = env(
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("DB_NAME", default="iages_staging"),
-        "USER": env("DB_USER", default="iages_staging"),
-        "PASSWORD": env("DB_PASSWORD", default="iages_staging"),
+        "NAME": env("DB_NAME", default="coloredcow_staging"),
+        "USER": env("DB_USER", default="coloredcow_staging"),
+        "PASSWORD": env("DB_PASSWORD", default="coloredcow_staging"),
         "HOST": env("DB_HOST", default="localhost"),
         "PORT": env("DB_PORT", default="5432"),
     }

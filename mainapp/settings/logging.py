@@ -56,7 +56,7 @@ LOGGING = {
             "level": "ERROR",
             "propagate": False,
         },
-        "iages": {
+        "coloredcow": {
             "handlers": ["error_file"],
             "level": "DEBUG",
             "propagate": True,
