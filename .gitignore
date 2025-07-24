@@ -143,3 +143,6 @@ admin/
 
 # uploads folder
 media/uploads/
+
+# code coverage file
+coverage.txt
