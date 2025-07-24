@@ -1,0 +1,56 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        args: ['--ignore=E712,E711,E501,W503']
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile=black"]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+    - id: mypy
+      additional_dependencies:
+        - django
+        - django-stubs
+        - djangorestframework
+        - djangorestframework-simplejwt
+        - drf-yasg
+        - django-environ
+        - django-cors-headers
+        - django-polymorphic
+        - drf-polymorphic
+        - psycopg2-binary
+        - django-filter
+        - types-requests
+        - boto3
+        - django-helpdesk
+        - django_celery_beat
+        - types-pytz
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.7
+    hooks:
+      - id: bandit
+        args: ["-r", "mainapp"]
