@@ -46,7 +46,6 @@ repos:
         - django-filter
         - types-requests
         - boto3
-        - django-helpdesk
         - django_celery_beat
         - types-pytz
   - repo: https://github.com/PyCQA/bandit
