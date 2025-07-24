@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +76,21 @@ CORS_ALLOWED_ORIGINS = env(
 )
 CORS_ALLOW_CREDENTIALS = env("CORS_ALLOW_CREDENTIALS")
 SITE_DOMAIN = os.getenv("SITE_DOMAIN")
+# Templates
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
 
 # Django REST Framework and Simple JWT configuration
 REST_FRAMEWORK = {
