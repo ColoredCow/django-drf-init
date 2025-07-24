@@ -28,7 +28,7 @@ jobs:
         run: nc -zv ${{ secrets.UAT_SSH_HOST }} 22
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1.2.2
         with:
           host: "${{ secrets.UAT_SSH_HOST }}"
           username: "${{ secrets.UAT_SSH_USERNAME }}"
