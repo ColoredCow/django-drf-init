@@ -1,5 +1,3 @@
-# settings/__init__.py
-
 from .env import env
 
 django_env = env("DJANGO_ENV", default="local")
