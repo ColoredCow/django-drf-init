@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Iages Backend to Staging
+    name: Deploy Code to Staging
     runs-on: ubuntu-latest
 
     steps:
