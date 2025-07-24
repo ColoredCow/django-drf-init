@@ -13,5 +13,4 @@ Describe your changes or approach in detail. Why these changes are required? Wha
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 - [ ] I have performed a self-review of my own code.
 - [ ] I have added comments on my code changes where required.
-- [ ] I have included swagger API documentation updates for any changes in the API
 - [ ] I have tested my code changes and other connected areas.
