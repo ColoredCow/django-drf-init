@@ -40,13 +40,10 @@ repos:
         - drf-yasg
         - django-environ
         - django-cors-headers
-        - django-polymorphic
-        - drf-polymorphic
         - psycopg2-binary
         - django-filter
         - types-requests
         - boto3
-        - django_celery_beat
         - types-pytz
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.7
