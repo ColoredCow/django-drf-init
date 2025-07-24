@@ -5,8 +5,6 @@ This repository provides a robust and scalable Django-based backend boilerplate 
 ## Installation
 To get started with this boilerplate, please refer to the [installation guide](./docs/development/installation.md). This guide will walk you through setting up the project on your local system, including environment setup and dependency installation.
 
-## API Documentation
-Once you have the development server running, you can access the automatically generated API documentation. Navigate to `http://localhost:8000/swagger` in your web browser to view the interactive API documentation powered by `drf-yasg`.
 
 ## Deployment
 For instructions on deploying this backend boilerplate to a hosting server, please visit the [deployment guide](./docs/development/deployment.md).
