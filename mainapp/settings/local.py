@@ -14,11 +14,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": env("DB_NAME", default="coloredcow"),
-        "USER": env("DB_USER", default="colredcow"),
+        "USER": env("DB_USER", default="coloredcow"),
         "PASSWORD": env("DB_PASSWORD", default="coloredcow"),
         "HOST": env("DB_HOST", default="localhost"),
         "PORT": env("DB_PORT", default="5432"),
     }
 }
-
-STATIC_URL = "static/"
