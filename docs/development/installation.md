@@ -6,7 +6,7 @@
 **Installation steps**
 1. Clone this repository and move to the `<<repo-name>>` directory
    ```sh
-   git clone https://github.com/coloredcow-admin/<<repo-name>>.git
+   git clone https://github.com/<<user-name>>/<<repo-name>>.git
 
    cd <<repo-name>>
    ```
