@@ -39,4 +39,3 @@ Visit the link for download PostgresSQL installer. [Download PostgresSQL](https:
 5. Click `Next` and enter a password for the PostgreSQL user account. Make sure to remember it, as it will be needed for future server logins.
 6. Configure the port (typically, PostgreSQL uses port number 5432 by default).
 7. Select the locale to be used by PostgreSQL. (By default, PostgreSQL uses the locale of the current operating system.)
-
