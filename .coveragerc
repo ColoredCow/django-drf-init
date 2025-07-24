@@ -1,0 +1,13 @@
+[run]
+source = apps
+omit =
+    */tests/*
+    */migrations/*
+    */apps.py
+    */wsgi.py
+    */asgi.py
+
+
+[report]
+skip_covered = True
+show_missing = True
