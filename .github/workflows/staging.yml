@@ -12,6 +12,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+            path: ~/.cache/pip
+            key: ${{ runner.os }}-pip-${{ hashFiles('requirements/base.txt') }}
+            restore-keys: |
+            ${{ runner.os }}-pip-
 
       - name: Test SSH connectivity
         run: nc -zv ${{ secrets.UAT_SSH_HOST }} 22
@@ -24,7 +34,7 @@ jobs:
           key: "${{ secrets.UAT_SSH_PRIVATE_KEY }}"
           script: |
             set -e
-            echo "Navigating to backend directory..."
+            echo "Navigating to backend directory: ${{ secrets.UAT_SSH_BUILD_DIRECTORY }}"
             cd ${{ secrets.UAT_SSH_BUILD_DIRECTORY }} || exit 1
             echo "Current directory: $(pwd)"
 
@@ -44,4 +54,4 @@ jobs:
             echo "Restarting Gunicorn..."
             sudo systemctl restart gunicorn-service
 
-            echo "Deployment completed."
+            echo "✅ Deployment completed."
