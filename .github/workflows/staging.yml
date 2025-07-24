@@ -1,0 +1,47 @@
+name: Staging Deployment
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  deploy:
+    name: Deploy Iages Backend to Staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test SSH connectivity
+        run: nc -zv ${{ secrets.UAT_SSH_HOST }} 22
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: "${{ secrets.UAT_SSH_HOST }}"
+          username: "${{ secrets.UAT_SSH_USERNAME }}"
+          key: "${{ secrets.UAT_SSH_PRIVATE_KEY }}"
+          script: |
+            set -e
+            echo "Navigating to backend directory..."
+            cd ${{ secrets.UAT_SSH_BUILD_DIRECTORY }} || exit 1
+            echo "Current directory: $(pwd)"
+
+            echo "Pulling latest code..."
+            git checkout -f
+            git pull origin develop
+
+            echo "Activating virtual environment..."
+            source venv/bin/activate
+
+            echo "Installing dependencies..."
+            pip install -r requirements/base.txt
+
+            echo "Running migrations..."
+            python manage.py migrate --noinput
+
+            echo "Restarting Gunicorn..."
+            sudo systemctl restart gunicorn-service
+
+            echo "Deployment completed."
