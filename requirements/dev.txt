@@ -1,3 +1,12 @@
 -r base.txt
 
 coverage==7.9.2
+pre_commit==4.2.0
+bandit==1.8.3
+black==25.1.0
+flake8==7.2.0
+flake8-bugbear==24.12.12
+flake8-comprehensions==3.16.0
+isort==6.0.1
+mypy==1.16.0
+mypy_extensions==1.1.0
