@@ -3,8 +3,9 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-# TODO - add soft delete and timestamp from common app
-class Files(models.Model):
+from apps.common.models import SoftDeleteMixin, TimestampMixin
+
+class Files(TimestampMixin, SoftDeleteMixin, models.Model):
     file = models.URLField()
     original_name = models.CharField(max_length=255)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)

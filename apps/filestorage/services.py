@@ -7,7 +7,7 @@ from rest_framework.exceptions import ValidationError
 
 from apps.filestorage.utils import generate_storage_key
 
-from .models import FileUpload
+from .models import Files
 from .storage.factory import get_storage_service
 
 logger = logging.getLogger(__name__)
@@ -60,7 +60,7 @@ def save_file_metadata(
     app_label, model = content_type_str.split(".")
     content_type = ContentType.objects.get(app_label=app_label, model=model)
 
-    uploaded_file = FileUpload.objects.create(
+    uploaded_file = Files.objects.create(
         file=file_url,
         original_name=original_name,
         uploaded_by=user,
@@ -73,7 +73,7 @@ def save_file_metadata(
 
 def delete_file_from_s3(key: str, user=None) -> None:
     """
-    Delete a file from the S3 bucket and its metadata from the FileUpload table.
+    Delete a file from the S3 bucket and its metadata from the Files table.
 
     Args:
         key (str): The S3 object key of the file to delete (e.g., 'uploads/example.jpg').
@@ -88,7 +88,7 @@ def delete_file_from_s3(key: str, user=None) -> None:
 
     try:
         with transaction.atomic():
-            file_upload = FileUpload.objects.filter(file=key).first()
+            file_upload = Files.objects.filter(file=key).first()
             if not file_upload:
                 logger.warning(f"No metadata found for key: {key}")
             elif user and file_upload.uploaded_by != user:
@@ -102,8 +102,8 @@ def delete_file_from_s3(key: str, user=None) -> None:
             else:
                 logger.warning(f"Storage service does not support deletion: {key}")
 
-            # Delete metadata from FileUpload table
-            deleted_count, _ = FileUpload.objects.filter(id=key).delete()
+            # Delete metadata from Files table
+            deleted_count, _ = Files.objects.filter(id=key).delete()
             if deleted_count > 0:
                 logger.info(f"Successfully deleted metadata for key: {key}")
             else:
