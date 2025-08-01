@@ -13,7 +13,7 @@ def send_password_reset_email(user: CustomUser):
     token = default_token_generator.make_token(user)
     reset_link = f"{settings.FRONTEND_URL}/reset-password/{uid}/{token}/"
 
-    subject = "Reset Your IAGES Password"
+    subject = "Reset Your Password"
 
     html_content = (
         f"<p>Dear User,</p>"
