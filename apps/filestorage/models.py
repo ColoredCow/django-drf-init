@@ -5,6 +5,7 @@ from django.db import models
 
 from apps.common.models import SoftDeleteMixin, TimestampMixin
 
+
 class Files(TimestampMixin, SoftDeleteMixin, models.Model):
     file = models.URLField()
     original_name = models.CharField(max_length=255)
@@ -15,6 +16,6 @@ class Files(TimestampMixin, SoftDeleteMixin, models.Model):
     uploaded_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL
     )
-    
+
     class Meta:
         db_table = "files"
