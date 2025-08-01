@@ -119,6 +119,7 @@ def delete_file_from_s3(key: str, user=None) -> None:
         logger.error(f"Failed to delete file metadata: {key}, Error: {str(e)}")
         raise Exception(f"Failed to delete file metadata: {str(e)}")
 
+
 def generate_presigned_get_url(
     file_url, content_type="application/octet-stream", expires_in=3600
 ):
