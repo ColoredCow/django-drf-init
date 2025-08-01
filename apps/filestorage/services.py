@@ -118,3 +118,35 @@ def delete_file_from_s3(key: str, user=None) -> None:
     except Exception as e:
         logger.error(f"Failed to delete file metadata: {key}, Error: {str(e)}")
         raise Exception(f"Failed to delete file metadata: {str(e)}")
+
+def generate_presigned_get_url(
+    file_url, content_type="application/octet-stream", expires_in=3600
+):
+    """
+    Generate a presigned GET URL for accessing the S3 object.
+
+    Args:
+        file_url (str): The full S3 URL or S3 key (e.g., 'uploads/example.jpg').
+        content_type (str): (Optional) The content type to return.
+        expires_in (int): (Optional) Expiry time in seconds (default: 1 hour).
+
+    Returns:
+        dict: {'file_url': presigned_url, 'document_id': s3_key}
+    """
+    if not file_url:
+        raise ValueError("file_url is required.")
+
+    storage_service = get_storage_service()
+
+    s3_key = file_url
+    if "amazonaws.com/" in file_url or ".com/" in file_url:
+        s3_key = file_url.split(".com/")[-1]
+
+    if hasattr(storage_service, "generate_presigned_get_url"):
+        return storage_service.generate_presigned_get_url(
+            document_id=s3_key, content_type=content_type, expires_in=expires_in
+        )
+    else:
+        raise NotImplementedError(
+            "The storage backend does not support presigned GET URLs."
+        )

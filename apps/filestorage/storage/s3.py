@@ -44,3 +44,31 @@ class S3StorageService(StorageService):
             "document_id": document_id,
             "file_url": f"{self.custom_domain}/{document_id}",
         }
+
+    def generate_presigned_get_url(
+        self, document_id, content_type="application/octet-stream", expires_in=3600
+    ):
+        """
+        Generate a presigned GET URL for accessing the object.
+
+        Args:
+            document_id (str): The S3 object key.
+            content_type (str): Response content type for the file.
+            expires_in (int): Time in seconds for URL expiry.
+
+        Returns:
+            dict: Contains the presigned URL and document ID.
+        """
+        presigned_url = self.s3.generate_presigned_url(
+            ClientMethod="get_object",
+            Params={
+                "Bucket": self.bucket,
+                "Key": document_id,
+                "ResponseContentType": content_type,
+            },
+            ExpiresIn=expires_in,
+        )
+        return {
+            "file_url": presigned_url,
+            "document_id": document_id,
+        }

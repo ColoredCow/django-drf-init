@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "apps.user",
+    "apps.filestorage",
 ]
 
 MIDDLEWARE = [
