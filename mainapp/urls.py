@@ -18,7 +18,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from apps.common.views import StatusView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("user/", include("apps.user.urls")),
+    path("status/", StatusView.as_view(), name="status"),
 ]
