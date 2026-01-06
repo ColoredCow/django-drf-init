@@ -3,9 +3,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 LOG_DIR = BASE_DIR / "logs"
-
-if not LOG_DIR.exists():
-    LOG_DIR.mkdir(parents=True, exist_ok=True)
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 LOGGING = {
     "version": 1,
@@ -45,19 +43,30 @@ LOGGING = {
             "formatter": "verbose",
         },
     },
+
+    "root": {
+        "handlers": ["file", "error_file", "console"],
+        "level": "INFO",
+    },
+    
     "loggers": {
         "django": {
             "handlers": ["file", "console"],
             "level": "DEBUG",
-            "propagate": True,
+            "propagate": False,
         },
         "django.request": {
             "handlers": ["error_file"],
             "level": "ERROR",
             "propagate": False,
         },
+        "apps": {
+            "handlers": ["file", "error_file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
         "mainapp": {
-            "handlers": ["error_file"],
+            "handlers": ["file", "error_file", "console"],
             "level": "DEBUG",
             "propagate": True,
         },
